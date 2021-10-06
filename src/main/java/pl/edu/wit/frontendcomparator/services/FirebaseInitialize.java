@@ -15,9 +15,10 @@ public class FirebaseInitialize {
     @PostConstruct
     public void initialize() {
         try {
+            String path = new java.io.File(".").getCanonicalPath();
+            path = path + "/src/main/resources/serviceAccount.json";
             FileInputStream serviceAccount =
-                    new FileInputStream("C:/Users/Arczi/Desktop/IT/WebProjects/FrontEndComparator-Backend/src/main/resources/serviceAccount.json");
-
+                    new FileInputStream(path);
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://gamesdatabasestudent.europe-central2.firebasedatabase.app")

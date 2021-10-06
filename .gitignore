@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Ignore firestore key file ###
+src/main/resources/serviceAccount.json

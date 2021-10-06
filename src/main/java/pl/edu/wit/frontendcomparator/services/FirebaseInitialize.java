@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.File;
 
 @Service
 public class FirebaseInitialize {
@@ -15,7 +15,7 @@ public class FirebaseInitialize {
     @PostConstruct
     public void initialize() {
         try {
-            String path = new java.io.File(".").getCanonicalPath();
+            String path = new File(".").getCanonicalPath();
             path = path + "/src/main/resources/serviceAccount.json";
             FileInputStream serviceAccount =
                     new FileInputStream(path);

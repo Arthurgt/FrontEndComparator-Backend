@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wit.frontendcomparator.models.Game;
 import pl.edu.wit.frontendcomparator.services.FirebaseService;
-
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -13,6 +12,7 @@ public class GameController {
     @Autowired
     FirebaseService firebaseService;
 
+    @CrossOrigin
     @GetMapping("/getGame")
     public Game getGame(@RequestHeader String title) throws ExecutionException, InterruptedException {
         return firebaseService.getGame(title);

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FrontendcomparatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FrontendcomparatorApplication.class, args);
+	    SpringApplication.run(FrontendcomparatorApplication.class, args);
 	}
 
 }

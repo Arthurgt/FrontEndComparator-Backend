@@ -15,7 +15,7 @@ public class Game {
         super();
     }
 
-    public Game(String title, String category, String studio, String country, String year, String description, String imdbrating, String poster) {
+    public Game(String title, String category, String studio, String country, String year, String description, String poster) {
         super();
         this.title = title;
         this.category = category;
@@ -23,7 +23,6 @@ public class Game {
         this.country = country;
         this.year = year;
         this.description = description;
-        this.imdbrating = imdbrating;
         this.poster = poster;
     }
 
@@ -73,14 +72,6 @@ public class Game {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getImdbrating() {
-        return imdbrating;
-    }
-
-    public void setImdbrating(String imdbrating) {
-        this.imdbrating = imdbrating;
     }
 
     public String getPoster() {

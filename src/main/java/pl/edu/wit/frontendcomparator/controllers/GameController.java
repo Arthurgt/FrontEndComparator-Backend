@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wit.frontendcomparator.models.Game;
 import pl.edu.wit.frontendcomparator.services.FirebaseService;
+
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -12,7 +14,21 @@ public class GameController {
     @Autowired
     FirebaseService firebaseService;
 
-    @CrossOrigin
+    @GetMapping("/getLargeLoad")
+    public List<Game> getLargeLoad() throws ExecutionException, InterruptedException {
+        return firebaseService.getLargeLoad();
+    }
+
+    @GetMapping("/getMediumLoad")
+    public List<Game> getMediumLoad() throws ExecutionException, InterruptedException {
+        return firebaseService.getMediumLoad();
+    }
+
+    @GetMapping("/getSmallLoad")
+    public List<Game> getSmallLoad() throws ExecutionException, InterruptedException {
+        return firebaseService.getSmallLoad();
+    }
+
     @GetMapping("/getGame")
     public Game getGame(@RequestHeader String title) throws ExecutionException, InterruptedException {
         return firebaseService.getGame(title);

@@ -1,14 +1,13 @@
 package pl.edu.wit.frontendcomparator.services;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 import pl.edu.wit.frontendcomparator.models.Game;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -31,6 +30,51 @@ public class FirebaseService {
             game = document.toObject(Game.class);
         }
         return game;
+    }
+
+    public List<Game> getLargeLoad() throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference collectionReference = dbFirestore.collection("movies");
+        ApiFuture<QuerySnapshot> future = collectionReference.get();
+
+        QuerySnapshot collection = future.get();
+        List<Game> games = new LinkedList<Game>();
+        if(!collection.isEmpty()){
+            for(QueryDocumentSnapshot query : collection.getDocuments()) {
+                games.add(query.toObject(Game.class));
+            }
+        }
+        return games;
+    }
+
+    public List<Game> getMediumLoad() throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference collectionReference = dbFirestore.collection("movies");
+        ApiFuture<QuerySnapshot> future = collectionReference.get();
+
+        QuerySnapshot collection = future.get();
+        List<Game> games = new LinkedList<Game>();
+        if(!collection.isEmpty()){
+            for(int i=0; i < (collection.getDocuments().size()/2); i++) {
+                games.add(collection.getDocuments().get(i).toObject(Game.class));
+            }
+        }
+        return games;
+    }
+
+    public List<Game> getSmallLoad() throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference collectionReference = dbFirestore.collection("movies");
+        ApiFuture<QuerySnapshot> future = collectionReference.get();
+
+        QuerySnapshot collection = future.get();
+        List<Game> games = new LinkedList<Game>();
+        if(!collection.isEmpty()){
+            for(int i=0; i < (collection.getDocuments().size()/4); i++) {
+                games.add(collection.getDocuments().get(i).toObject(Game.class));
+            }
+        }
+        return games;
     }
 
     public String deleteGame(Game game) throws ExecutionException, InterruptedException {

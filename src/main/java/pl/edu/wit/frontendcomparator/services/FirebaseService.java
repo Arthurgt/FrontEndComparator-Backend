@@ -77,10 +77,10 @@ public class FirebaseService {
         return games;
     }
 
-    public String deleteGame(Game game) throws ExecutionException, InterruptedException {
+    public String deleteGame(String title) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> writeResult = dbFirestore.collection("movies").document(game.getTitle()).delete();
-        return "Document: " + game.getTitle() + "has been deleted";
+        ApiFuture<WriteResult> writeResult = dbFirestore.collection("movies").document(title).delete();
+        return "Document: " + title + "has been deleted";
     }
 
 }

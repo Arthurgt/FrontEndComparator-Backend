@@ -44,9 +44,9 @@ public class GameController {
         return firebaseService.saveOrUpdateGame(game);
     }
 
-    @DeleteMapping("/deleteGame")
-    public String deleteGame(@RequestBody Game game) throws ExecutionException, InterruptedException {
-        return firebaseService.deleteGame(game);
+    @DeleteMapping("/deleteGame/{title}")
+    public String deleteGame(@PathVariable String title) throws ExecutionException, InterruptedException {
+        return firebaseService.deleteGame(title);
     }
 
 }
